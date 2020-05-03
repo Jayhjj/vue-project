@@ -21,21 +21,14 @@ export default {
     // storage.setItem('user',{a:1});
     // storage.setItem('abc',{a:1},'user');
     // storage.clear('a',1);
-    this.axios.get('/user/login')
-      .then((res) => {
-        this.res = res;
-      });
+  //   this.axios.get('/user/login')
+  //     .then((res) => {
+  //       this.res = res;
+  //     });
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="stylus">
+@import'./assets/stylus/reset.styl'
 </style>
