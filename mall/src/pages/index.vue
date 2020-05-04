@@ -53,7 +53,7 @@
       </div>
       <div class="ads-box">
         <a :href="'/#/product/' + item.id" v-for="(item, index) of adsList" :key="index">
-          <img v-lazy="item.img" />
+          <img :src="item.img" />
         </a>
       </div>
       <div class="banner">
@@ -68,7 +68,7 @@
         <div class="wrapper">
           <div class="banner-left">
             <a href="/#/product/35">
-              <img v-lazy="'/imgs/mix-alpha.jpg'" alt />
+              <img src="/imgs/mix-alpha.jpg" alt />
             </a>
           </div>
           <div class="list-box">
@@ -76,7 +76,7 @@
               <div class="item" v-for="(item, j) of arr" :key="j">
                 <span :class="{'new-pro': j%2 === 0}">新品</span>
                 <div class="item-img">
-                  <img v-lazy="item.mainImage" />
+                  <img :src="item.mainImage" />
                 </div>
                 <div class="item-info">
                   <h3>{{item.name}}</h3>
@@ -217,21 +217,21 @@ export default {
         this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
       });
     },
-    // addCart (id) {
-    //   this.showModal = true;
-    //   this.axios.post('/carts', {
-    //     productId: id,
-    //     selected: true
-    //   }).then((res) => {
-    //     this.showModal = true;
-    //     this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
-    //   }).catch((errMsg) => {
-    //     this.showModal = true;
-    //   });
-    // },
-    // goToCart () {
-    //   this.$router.push("/cart");
-    // }
+    addCart (id) {
+      this.showModal = true;
+      this.axios.post('/carts', {
+        productId: id,
+        selected: true
+      }).then((res) => {
+        this.showModal = true;
+        this.$store.dispatch('saveCartCount', res.cartTotalQuantity);
+      }).catch((errMsg) => {
+        this.showModal = true;
+      });
+    },
+    goToCart () {
+      this.$router.push("/cart");
+    }
   }
 }
 </script>
@@ -276,7 +276,7 @@ export default {
             background-color: $colorA;
 
             .children {
-              display: block;
+              display: block;//
             }
           }
 
@@ -304,8 +304,8 @@ export default {
                 img {
                   width: 42px;
                   height: 35px;
-                  vertical-align: middle;
-                  margin-right: 15px;
+                  vertical-align: middle;//字体居中
+                  margin-right: 15px;//与字体的距离
                 }
 
                 a {
@@ -360,10 +360,10 @@ export default {
     }
 
     .wrapper {
-      display: flex;
+      display: flex;//弹性布局，使得两个盒子左右分开
 
       .banner-left {
-        margin-right: 16px;
+        margin-right: 16px;//与listbox的距离
 
         img {
           width: 224px;
@@ -375,12 +375,12 @@ export default {
         .list {
           setFlex();
           width: 986px;
-          margin-bottom: 14px;
+          margin-bottom: 14px;//每行与上一行的距离
 
           &:last-child {
-            margin-bottom: 0px;
+            margin-bottom: 0px;//最后一个不需要
           }
-
+            //每一个产品盒子设置
           .item {
             width: 236px;
             height: 302px;
@@ -403,22 +403,22 @@ export default {
                 background-color: #e82626;
               }
             }
-
+            //设置产品图片大小
             .item-img {
               img {
                 height: 195px;
                 width: 100%;
               }
             }
-
+            //设置产品字体大小
             .item-info {
               h3 {
                 color: $colorB;
                 font-size: $fontJ;
-                line-height: 14px;
+                line-height: 14px;//用行高做间距
                 font-weight: bold;
               }
-
+              //设置价格文字
               p {
                 color: $colorD;
                 line-height: 13px;
@@ -430,7 +430,7 @@ export default {
                 font-size: $fontJ;
                 font-weight: bold;
                 cursor: pointer;
-
+                //伪类加图标
                 &:after {
                   content: ' ';
                   bgImg(22px, 22px, '/imgs/icon-cart-hover.png');
