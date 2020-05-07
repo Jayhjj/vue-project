@@ -1,8 +1,11 @@
 <template>
   <transition name="slide">
+      <!-- 购物车弹出动画 -->
     <div class="modal" v-show="showModal">
       <div class="mask"></div>
+      <!-- 弹框 -->
       <div class="modal-dialog">
+          <!-- 标题 -->
         <div class="modal-header">
           <span>{{title}}</span>
           <a href="javascript:;" class="icon-close" @click="$emit('cancel')"></a>
@@ -10,9 +13,11 @@
         <div class="modal-body">
           <slot name="body"></slot>
         </div>
+        <!-- 设置按钮 -->
         <div class="modal-footer">
           <a href="javascript:;" class="btn" v-if="btnType === '1'" @click="$emit('submit')">{{sureText}}</a>
           <a href="javascript:;" class="btn" v-if="btnType === '2'" @click="$emit('cancel')">{{cancelText}}</a>
+          
           <div class="btn-group" v-if="btnType === '3'">
             <a href="javascript:;" class="btn" @click="$emit('submit')">{{sureText}}</a>
             <a href="javascript:;" class="btn btn-default" @click="$emit('cancel')">{{cancelText}}</a>

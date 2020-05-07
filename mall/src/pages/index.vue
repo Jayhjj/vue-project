@@ -74,7 +74,7 @@
           <div class="list-box">
             <div class="list" v-for="(arr, i) of phoneList" :key="i">
               <div class="item" v-for="(item, j) of arr" :key="j">
-                <span :class="{'new-pro': j%2 === 0}">新品</span>
+                <span v-bind="{'new-pro': j%2 === 0}">新品</span>
                 <div class="item-img">
                   <img :src="item.mainImage" />
                 </div>
@@ -116,7 +116,7 @@ export default {
     swiper,
     swiperSlide,
     ServiceBar,
-    // Modal
+    Modal
   },
   data () {
     return {
@@ -203,9 +203,10 @@ export default {
     }
   },
   mounted () {
-    this.init();
+    this.init();//加载商品列表
   },
   methods: {
+    //获取商品,通过接口文档
     init () {
       this.axios.get('/products', {
         params: {
@@ -213,8 +214,8 @@ export default {
           pageSize: 14
         }
       }).then((res) => {
-        res.list = res.list.slice(6, 14);
-        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];
+        res.list = res.list.slice(6, 14);//从第六条数据开始分割
+        this.phoneList = [res.list.slice(0, 4), res.list.slice(4, 8)];//会改变原数组,每个数组有四个元素
       });
     },
     addCart (id) {
@@ -350,7 +351,7 @@ export default {
   .product-box {
     background-color: $colorJ;
     padding: 30px 0 50px 0;
-
+    // 设置手机字体
     h2 {
       font-size: $fontF;
       height: 21px;
@@ -386,7 +387,7 @@ export default {
             height: 302px;
             background-color: $colorG;
             text-align: center;
-
+            // 设置新品字体样式
             span {
               display: inline-block;
               width: 67px;
@@ -435,7 +436,7 @@ export default {
                   content: ' ';
                   bgImg(22px, 22px, '/imgs/icon-cart-hover.png');
                   margin-left: 5px;
-                  vertical-align: middle;
+                  vertical-align: middle;//设置居中
                 }
               }
             }
