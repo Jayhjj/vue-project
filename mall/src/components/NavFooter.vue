@@ -17,7 +17,7 @@ export default {
   name: 'nav-footer'
 }
 </script>
-<style lang="stylus" scoped>
+<style lang="stylus" >
 @import '../assets/stylus/config.styl';
 
 .footer {

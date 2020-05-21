@@ -10,18 +10,10 @@
         </div>
         <div class="topbar-user">
           <template v-if="this.username">
-            <a href="javascript:;">{{username}}</a>
-            <a href="javascript:;" @click="logout">退出</a>
-            <a href="javascript:;" @click="goToOrder">我的订单</a>
+            <a href="javascript:;" v-if="username">{{username}}</a>
+            <a href="javascript:;" v-if="username" @click="login">登入</a>
+            <a href="javascript:;" class="my-cart" @click="goToCart"><span class="icon-cart">购物车{{cartCount}}</span></a>
           </template>
-          <template v-else>
-            <a href="javascript:;" @click="login">登录</a>
-            <a href="javascript:;">注册</a>
-          </template>
-          <a href="javascript:;" class="my-cart" @click="goToCart">
-            <span class="icon-cart"></span>
-            购物车({{cartCount}})
-          </a>
         </div>
       </div>
     </div>
@@ -38,7 +30,7 @@
                 <li class="product" v-for="item of phoneList" :key="item.id">
                   <a v-bind:href="'/#/product/' + item.id" target="_blank">
                     <div class="pro-img">
-                      <img v-lazy="item.mainImage" alt />
+                      <img v-lazy="item.mainImage" alt="item.subtitle" />
                     </div>
                     <div class="pro-name">{{item.name}}</div>
                     <div class="pro-price">{{item.price | currency}}</div>
@@ -67,11 +59,12 @@
   </div>
 </template>
 <script>
-// import { mapState } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   name: 'nav-header',
   data () {
     return {
+      username:this.$store.state.username,
       phoneList: []
     };
   },
@@ -90,7 +83,7 @@ export default {
     // cartCount () {
     //   return this.$store.state.cartCount;
     // },
-    // ...mapState(['username', 'cartCount'])
+    ...mapState(['username', 'cartCount'])
   },
   mounted () {
     this.getProductList();
