@@ -1,0 +1,41 @@
+// flex布局定义
+setFlex($hov = space-between, $col = center) {
+    display: flex;
+    justify-content: $hov;
+    align-items: $col;
+}
+
+bgImg($width = 0, $height = 0, $img = '', $size = contain) {
+    display: inline-block;
+    width: $width;
+    height: $height;
+    background: url($img) no-repeat center;
+    background-size: $size;
+}
+
+setPosition($pos = absolute, $top = 0, $left = 0, $w = 100%, $h = 100%) {
+    position: $pos;
+    top: $top;
+    left: $left;
+    width: $w;
+    height: $h;
+}
+
+positionImg($pos = absolute, $top = 0, $right = 0, $width = 0, $height = 0, $img) {
+    position: $pos;
+    top: $top;
+    right: $right;
+    width: $width;
+    height: $height;
+    background: url($img) no-repeat center;
+    background-size: contain;
+}
+
+setBorder($width = 1px, $color = $colorF, $style = solid) {
+    border: $width $style $color;
+}
+
+setHeight($height = 0, $lineHeight = $height) {
+    height: $height;
+    line-height: $lineHeight;
+}
